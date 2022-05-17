@@ -1,7 +1,7 @@
 import type { Source } from 'callbag';
 import pipe from 'callbag-pipe';
 import scan from 'callbag-scan';
-import { createSource } from 'callbag-toolkit';
+import { createSource } from '@clfhhc/callbag-toolkit';
 import { read, openSync, closeSync } from 'node:fs';
 import { dropAfter } from '../callbag/dropAfter';
 import { last } from '../callbag/last';

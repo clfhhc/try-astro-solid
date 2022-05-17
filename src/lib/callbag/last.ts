@@ -1,5 +1,5 @@
 import type { Source } from 'callbag';
-import { createSource, consumeSource } from 'callbag-toolkit';
+import { createSource, consumeSource } from '@clfhhc/callbag-toolkit';
 
 /**
  * Take only last n emitted values from the source

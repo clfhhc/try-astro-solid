@@ -1,5 +1,5 @@
 import type { Source } from 'callbag';
-import { consumeSource } from 'callbag-toolkit';
+import { consumeSource } from '@clfhhc/callbag-toolkit';
 
 /**
  * convert a callbag to Promise

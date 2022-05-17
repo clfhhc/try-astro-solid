@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@astrojs/solid-js': ^0.1.2
   '@babel/core': ^7.17.12
+  '@clfhhc/callbag-toolkit': ^1.1.3
   '@graphql-codegen/cli': ^2.6.2
   '@graphql-codegen/typed-document-node': ^2.2.11
   '@graphql-codegen/typescript': ^2.4.11
@@ -23,7 +24,6 @@ specifiers:
   callbag-pipe: ^1.2.0
   callbag-scan: ^1.1.0
   callbag-take: ^1.5.0
-  callbag-toolkit: ^1.1.0
   eslint: ^8.15.0
   eslint-config-prettier: ^8.5.0
   eslint-import-resolver-typescript: ^2.7.1
@@ -39,6 +39,7 @@ specifiers:
   vitest: ^0.12.6
 
 dependencies:
+  '@clfhhc/callbag-toolkit': 1.1.3
   '@graphql-typed-document-node/core': 3.1.1_graphql@16.5.0
   '@urql/core': 2.4.4_graphql@16.5.0
   '@urql/exchange-graphcache': 4.4.0_graphql@16.5.0
@@ -50,7 +51,6 @@ dependencies:
   callbag-pipe: 1.2.0
   callbag-scan: 1.1.0
   callbag-take: 1.5.0
-  callbag-toolkit: 1.1.0
   graphql: 16.5.0
   lodash: 4.17.21
 
@@ -751,6 +751,12 @@ packages:
       '@babel/helper-validator-identifier': 7.16.7
       to-fast-properties: 2.0.0
     dev: true
+
+  /@clfhhc/callbag-toolkit/1.1.3:
+    resolution: {integrity: sha512-gGsxzYb39LYn4pUWnCm9PGBsCmcqgXHP80Ku6TSd1gaV6QWP9GzF1klXdvLB6ZjVIzKVxlQV6u3BZRPb57tyMA==}
+    dependencies:
+      callbag: 1.5.0
+    dev: false
 
   /@emmetio/abbreviation/2.2.3:
     resolution: {integrity: sha512-87pltuCPt99aL+y9xS6GPZ+Wmmyhll2WXH73gG/xpGcQ84DRnptBsI2r0BeIQ0EB/SQTOe2ANPqFqj3Rj5FOGA==}
@@ -2222,12 +2228,6 @@ packages:
 
   /callbag-take/1.5.0:
     resolution: {integrity: sha512-8aOxp+gzfVQtDe+tk9PhKbC9QR9Vap4KFA0xccUiXFK9VjIS0fSt/Yi454viPpMhJkhRcx1BsjyF34Cj57W89A==}
-    dependencies:
-      callbag: 1.5.0
-    dev: false
-
-  /callbag-toolkit/1.1.0:
-    resolution: {integrity: sha512-si/ugSEu2eoI5DGc0MCeBSU9LBmnwcKKFG+X/x0bqUCXROsb3qAaOG/OqAyrw2bCWox0BflWftZsKUnSwAf70w==}
     dependencies:
       callbag: 1.5.0
     dev: false

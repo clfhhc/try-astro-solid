@@ -1,5 +1,5 @@
 import fromIter from 'callbag-from-iter';
-import { consumeSource } from 'callbag-toolkit';
+import { consumeSource } from '@clfhhc/callbag-toolkit';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { takeAfter } from '../../../lib/callbag/takeAfter';
 

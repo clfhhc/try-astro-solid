@@ -1,10 +1,8 @@
 import pipe from 'callbag-pipe';
 import scan from 'callbag-scan';
-import * as callbagToolkit from 'callbag-toolkit';
+import { createSource } from '@clfhhc/callbag-toolkit';
 import { closeSync, openSync, write } from 'node:fs';
 import { toPromise } from '../callbag/toPromise';
-
-const { createSource } = callbagToolkit;
 
 const defaultBufferSize = 1e5;
 

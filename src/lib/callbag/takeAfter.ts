@@ -1,5 +1,5 @@
 import type { Source } from 'callbag';
-import * as callbagToolkit from 'callbag-toolkit';
+import * as callbagToolkit from '@clfhhc/callbag-toolkit';
 
 const { consumeSource, createSource } = callbagToolkit;
 
