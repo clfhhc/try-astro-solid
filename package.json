@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "remove-branches": "git branch | grep -v \"main\" | xargs git branch -D",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "NODE_ENV=production astro build && touch docs/.nojekyll",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@astrojs/solid-js": "^0.1.2",
