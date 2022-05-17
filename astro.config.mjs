@@ -1,7 +1,5 @@
 import { defineConfig } from 'astro/config';
-import solid from "@astrojs/solid-js";
-
-console.log(process.env.NODE_ENV);
+import solid from '@astrojs/solid-js';
 
 // https://astro.build/config
 export default defineConfig({
