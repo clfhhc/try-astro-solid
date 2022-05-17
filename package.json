@@ -1,11 +1,11 @@
 {
-  "name": "@example/basics",
+  "name": "try-astro-solid",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && touch docs/.nojekyll",
     "preview": "astro preview"
   },
   "devDependencies": {
