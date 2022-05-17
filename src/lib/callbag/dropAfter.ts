@@ -1,7 +1,5 @@
 import type { Source } from 'callbag';
-import * as callbagToolkit from 'callbag-toolkit';
-
-const { consumeSource, createSource } = callbagToolkit;
+import { createSource, consumeSource } from 'callbag-toolkit';
 
 /**
  * Drop the emitted values from the source after the predicate becomes true

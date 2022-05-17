@@ -1,0 +1,55 @@
+---
+import { Code } from 'astro/components';
+import { resolve } from 'node:path';
+// import { createClient, ssrExchange } from '@urql/core';
+import Layout from '@/components/Layout.astro';
+import { getLocalLeetcodeSlugs } from '@/lib/leetcode/getLeetcodeFiles';
+// import { getUrqlClientOptions } from '@/lib/urql/getUrqlClientOptions';
+import { extractFileSection } from '@/lib/utils/readFile';
+// import { QuestionDataDocument } from '@/graphql/leetcode/questionData.query';
+// import { makeLocalStorage } from '@/lib/urql/makeLocalStorage';
+
+export async function getStaticPaths() {
+  const slugs = await getLocalLeetcodeSlugs();
+  // const slugs = {
+  //   'two-sum.ts': {
+  //     slug: 'two-sum'
+  //   }
+  // }
+  return Object.entries(slugs).map(([slug, props]) => ({
+    params: { slug },
+    props,
+  }));
+  
+}
+
+const slug = Astro.props.slug;
+const title = `leetcode-ts: ${slug}`;
+
+// const ssrCache = ssrExchange({isClient: false});
+// const storage = makeLocalStorage();
+// const urqlClientOptions = getUrqlClientOptions(storage)(ssrCache);
+// const client = createClient(urqlClientOptions);
+// const questionDataRequest = client.query(QuestionDataDocument, {titleSlug: slug}).toPromise();
+
+const leetcodeFolderURL = new URL('../../leetcode', import.meta.url);
+const leetcodeFilePath = resolve(process.cwd(), './src/leetcode',`${Astro.params.slug}.ts`);
+console.log('leetcodeFilePath: ', leetcodeFilePath)
+const leetcodeSolutionRequest = extractFileSection({
+  filePath: leetcodeFilePath,
+  startPredicate: (line) => line === '/* solution start */',
+  endPredicate: (line) => line === '/* solution end */',
+});
+
+const leetcodeSolution = await leetcodeSolutionRequest;
+// const questionData = (await questionDataRequest).data.question;
+
+// const leetcodeSolution = 'const add(a:number, b:number):number => a + b;'
+
+---
+
+<Layout title={title}>
+  <!-- <h2>{questionData.title}</h2>
+  <div set:html={questionData.content}></div> -->
+  <Code code={leetcodeSolution} lang="ts" wrap theme="github-dark" />
+</Layout>

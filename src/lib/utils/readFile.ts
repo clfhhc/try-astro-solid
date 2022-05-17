@@ -1,14 +1,12 @@
 import type { Source } from 'callbag';
 import pipe from 'callbag-pipe';
 import scan from 'callbag-scan';
-import * as callbagToolkit from 'callbag-toolkit';
+import { createSource } from 'callbag-toolkit';
 import { read, openSync, closeSync } from 'node:fs';
 import { dropAfter } from '../callbag/dropAfter';
 import { last } from '../callbag/last';
 import { takeAfter } from '../callbag/takeAfter';
 import { toPromise } from '../callbag/toPromise';
-
-const { createSource } = callbagToolkit;
 
 const defaultBufferSize = 1e2;
 

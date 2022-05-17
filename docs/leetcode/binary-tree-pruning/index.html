@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en" class="astro-MGHQNGUJ">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<title>leetcode-ts: binary-tree-pruning</title>
+<link rel="stylesheet" href="/try-astro-solid/assets/asset.ad799a69.css"></link>
+</head>
+<body>
+	<pre is:raw class="astro-code" style="background-color: #0d1117; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #8B949E">/* solution start */</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Definition for a binary tree node.</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">val</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">number</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">left</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">|</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">right</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">|</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">constructor</span><span style="color: #C9D1D9">(</span><span style="color: #FFA657">val</span><span style="color: #FF7B72">?:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">number</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">left</span><span style="color: #FF7B72">?:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">|</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">right</span><span style="color: #FF7B72">?:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">|</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.val </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> val </span><span style="color: #FF7B72">===</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">undefined</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> val;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.left </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> left </span><span style="color: #FF7B72">===</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">undefined</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> left;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.right </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> right </span><span style="color: #FF7B72">===</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">undefined</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> right;</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">function</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">pruneTree</span><span style="color: #C9D1D9">(</span><span style="color: #FFA657">root</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">|</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">)</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">|</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">root) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> root;</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">node</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">new</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">TreeNode</span><span style="color: #C9D1D9">(root.val);</span></span>
+<span class="line"><span style="color: #C9D1D9">  node.left </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">pruneTree</span><span style="color: #C9D1D9">(root.left);</span></span>
+<span class="line"><span style="color: #C9D1D9">  node.right </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">pruneTree</span><span style="color: #C9D1D9">(root.right);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (root.val </span><span style="color: #FF7B72">===</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">||</span><span style="color: #C9D1D9"> node.left </span><span style="color: #FF7B72">||</span><span style="color: #C9D1D9"> node.right) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> node;</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #8B949E">/* solution end */</span></span></code></pre>
+
+
+</body></html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="en" class="astro-MGHQNGUJ">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<title>leetcode-ts: binary-tree-inorder-traversal</title>
+<link rel="stylesheet" href="/try-astro-solid/assets/asset.ad799a69.css"></link>
+</head>
+<body>
+	<pre is:raw class="astro-code" style="background-color: #0d1117; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #8B949E">/* solution start */</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #8B949E">/**</span></span>
+<span class="line"><span style="color: #8B949E"> * Definition for a binary tree node.</span></span>
+<span class="line"><span style="color: #8B949E"> */</span></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">val</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">number</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">left</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">|</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FFA657">right</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">|</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">constructor</span><span style="color: #C9D1D9">(</span><span style="color: #FFA657">val</span><span style="color: #FF7B72">?:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">number</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">left</span><span style="color: #FF7B72">?:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">|</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">right</span><span style="color: #FF7B72">?:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">|</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.val </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> val </span><span style="color: #FF7B72">===</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">undefined</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> val;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.left </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> left </span><span style="color: #FF7B72">===</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">undefined</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> left;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.right </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> right </span><span style="color: #FF7B72">===</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">undefined</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> right;</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">function</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">inorderTraversal</span><span style="color: #C9D1D9">(</span><span style="color: #FFA657">root</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">|</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">)</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">number</span><span style="color: #C9D1D9">[] {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">result</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">number</span><span style="color: #C9D1D9">[] </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> [];</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">stack</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9">[] </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> [];</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">let</span><span style="color: #C9D1D9"> pointer </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> root;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">while</span><span style="color: #C9D1D9"> (pointer </span><span style="color: #FF7B72">||</span><span style="color: #C9D1D9"> stack.</span><span style="color: #79C0FF">length</span><span style="color: #C9D1D9">) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">while</span><span style="color: #C9D1D9"> (pointer) {</span></span>
+<span class="line"><span style="color: #C9D1D9">      stack.</span><span style="color: #D2A8FF">push</span><span style="color: #C9D1D9">(pointer);</span></span>
+<span class="line"><span style="color: #C9D1D9">      pointer </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> pointer.left;</span></span>
+<span class="line"><span style="color: #C9D1D9">    }</span></span>
+<span class="line"><span style="color: #C9D1D9">    pointer </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> stack.</span><span style="color: #D2A8FF">pop</span><span style="color: #C9D1D9">() </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">TreeNode</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">    result.</span><span style="color: #D2A8FF">push</span><span style="color: #C9D1D9">(pointer.val);</span></span>
+<span class="line"><span style="color: #C9D1D9">    pointer </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> pointer.right;</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> result;</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #8B949E">/* solution end */</span></span></code></pre>
+
+
+</body></html>

@@ -1,7 +1,5 @@
 import type { Source } from 'callbag';
-import * as callbagToolkit from 'callbag-toolkit';
-
-const { consumeSource } = callbagToolkit;
+import { consumeSource } from 'callbag-toolkit';
 
 /**
  * convert a callbag to Promise
