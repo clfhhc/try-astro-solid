@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && touch docs/.nojekyll",
+    "build": "NODE_ENV=production astro build && touch docs/.nojekyll",
     "preview": "astro preview"
   },
   "devDependencies": {
