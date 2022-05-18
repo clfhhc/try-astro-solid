@@ -1,6 +1,33 @@
 ---
+import { QuestionListDocument } from '@/graphql/leetcode/questionList.query';
+import { getLocalLeetcodeSlugs } from '@/lib/leetcode/getLeetcodeFiles';
+import { getUrqlClientOptions } from '@/lib/urql/getUrqlClientOptions';
+import { makeLocalStorage } from '@/lib/urql/makeLocalStorage';
+import { createClient, ssrExchange } from '@urql/core';
+import { Debug } from 'astro/components'
 import Layout from '../components/Layout.astro';
 import Card from '../components/Card.astro';
+
+const ssrCache = ssrExchange({isClient: false});
+const storage = makeLocalStorage();
+const urqlClientOptions = getUrqlClientOptions(storage)(ssrCache);
+const client = createClient(urqlClientOptions);
+
+const questionListRequest = client?.query(QuestionListDocument, {
+    categorySlug: '',
+    skip: 0,
+    limit: -1,
+    filters: {},
+  }).toPromise();
+
+const slugsRequest = getLocalLeetcodeSlugs();
+const slugs = await slugsRequest;
+const leetcodeSlugs = Object.values(slugs).map(({slug}) => slug);
+
+const questionList = (await questionListRequest).data.questionList.data;
+const leetcodeQuestions = questionList.filter(
+	(question) =>	question.titleSlug && leetcodeSlugs.includes(question.titleSlug)
+);
 ---
 <Layout title="Welcome to Astro.">
 	<main>
@@ -16,6 +43,7 @@ import Card from '../components/Card.astro';
 			<Card href="https://astro.build/chat/" title="Chat" body="Come say hi to our amazing Discord community. ❤️" />
 		</ul>
 	</main>
+	<Debug {leetcodeQuestions} />
 </Layout>
 
 <style>
