@@ -1,14 +1,11 @@
 import { findFilesInDirIterativelyAsync } from '@/lib/utils/findFilesInDirIteratively';
-import { parse, relative, resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { parse, relative, resolve } from 'node:path';
 
 export interface SlugIndexed<T> {
   [slug: string]: T;
 }
-const __dirname = dirname(fileURLToPath(import.meta.url));
+// to accommodate both non-compiled and compiled scripts, use process.cwd()
 const defaultLeetcodeFolderPath = resolve(process.cwd(), './src/leetcode');
-console.log('__dirname: ', __dirname);
-console.log('getLeetcodeFolderPath: ', defaultLeetcodeFolderPath);
 
 export const getLocalLeetcodeSlugs = async (
   folderPath: string = defaultLeetcodeFolderPath
