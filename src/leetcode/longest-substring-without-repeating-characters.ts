@@ -1,4 +1,4 @@
-import { TestCaseWithFunction } from '@/lib/utils/types';
+import type { TestCaseWithFunction } from '@/lib/utils/types';
 
 /* solution start */
 

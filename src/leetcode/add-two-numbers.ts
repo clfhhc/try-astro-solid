@@ -1,4 +1,4 @@
-import { TestCaseWithFunction } from '@/lib/utils/types';
+import type { TestCaseWithFunction } from '@/lib/utils/types';
 
 /* solution start */
 
@@ -95,7 +95,7 @@ const createListNodeFromArray = (array: number[]): ListNode | null => {
         arr[1].next = newNode;
         arr[1] = newNode;
       }
-      return result;
+      return arr;
     },
     [null, null]
   );

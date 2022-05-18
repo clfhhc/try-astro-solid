@@ -1,4 +1,4 @@
-import { TestCaseWithFunction } from '@/lib/utils/types';
+import type { TestCaseWithFunction } from '@/lib/utils/types';
 
 /* solution start */
 
@@ -6,9 +6,9 @@ function twoSum(nums: number[], target: number): number[] {
   const numsObj: { [k: number]: number } = {};
   // iterate all the elements in the array
   for (let i = 0; i < nums.length; i++) {
-    let current = nums[i];
+    const current = nums[i];
     // calculate the match
-    let match = target - current;
+    const match = target - current;
     // find match in the previously scanned items
     if (match in numsObj) {
       // return if there is a match in the previously scanned items

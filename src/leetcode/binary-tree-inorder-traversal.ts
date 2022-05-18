@@ -1,4 +1,4 @@
-import { TestCaseWithFunction } from '@/lib/utils/types';
+import type { TestCaseWithFunction } from '@/lib/utils/types';
 
 /* solution start */
 
@@ -56,7 +56,7 @@ const createTreeNodeFromArray = (array: (number | null)[]): TreeNode | null => {
   }
 
   let pointer = 0;
-  let currentTreeNodeArray: TreeNode[] = [root];
+  const currentTreeNodeArray: TreeNode[] = [root];
   while (tempArray.length) {
     if (pointer === 0) {
       currentTreeNodeArray[0].left = createTreeNodeFromValue(tempArray.shift());
