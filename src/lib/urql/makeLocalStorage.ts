@@ -1,13 +1,12 @@
 import { SerializedEntries, StorageAdapter } from '@urql/exchange-graphcache';
 import pipe from 'callbag-pipe';
 import map from 'callbag-map';
-import * as _ from 'lodash';
 import { toPromise } from '../callbag/toPromise';
 import { readWholeFileSource } from '../utils/readFile';
 import { createWriteBytesSource } from '../utils/writeFile';
+import { resolve } from 'path';
 
-const defaultDataPath = new URL('../../../tmp/cache/data', import.meta.url)
-  .pathname;
+const defaultDataPath = resolve(process.cwd(), './tmp/cache/data');
 
 export const makeLocalStorage = ({
   dataPath = defaultDataPath,
@@ -24,7 +23,7 @@ export const makeLocalStorage = ({
     async writeData(delta) {
       Object.assign(cache, delta);
 
-      if (!shouldWrite || _.isEmpty(delta)) {
+      if (!shouldWrite || !Object.keys(delta).length) {
         return;
       }
 
