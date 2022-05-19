@@ -1,4 +1,4 @@
-import { TestCaseWithFunction } from '../utils/types';
+import { TestCaseWithFunction } from '@/lib/utils/types';
 import { getLocalLeetcodeSlugs } from './getLeetcodeFiles';
 
 export interface ImportedObj {

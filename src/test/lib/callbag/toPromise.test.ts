@@ -2,7 +2,7 @@ import fromIter from 'callbag-from-iter';
 import fromPromise from 'callbag-from-promise';
 import of from 'callbag-of';
 import { describe, expect, it } from 'vitest';
-import { toPromise } from '../../../lib/callbag/toPromise';
+import { toPromise } from '@/lib/callbag/toPromise';
 
 describe('toPromise', () => {
   it('is a function', () => {

@@ -1,4 +1,4 @@
-import { importLocalLeetcodeFiles } from '../../lib/leetcode/importLocalLeetcodeFiles';
+import { importLocalLeetcodeFiles } from '@/lib/leetcode/importLocalLeetcodeFiles';
 import { describe, expect, it } from 'vitest';
 
 describe('LeetCode Tests', async () => {

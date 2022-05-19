@@ -1,7 +1,7 @@
 import fromIter from 'callbag-from-iter';
 import { consumeSource } from '@clfhhc/callbag-toolkit';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { dropAfter } from '../../../lib/callbag/dropAfter';
+import { dropAfter } from '@/lib/callbag/dropAfter';
 
 describe('dropAfter', () => {
   const next = vi.fn<[number], void>();

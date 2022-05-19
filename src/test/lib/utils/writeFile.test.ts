@@ -1,6 +1,6 @@
 import { fs, vol } from 'memfs';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { writeWholeFileAndOutputBuffer } from '../../../lib/utils/writeFile';
+import { writeWholeFileAndOutputBuffer } from '@/lib/utils/writeFile';
 
 vi.mock('node:fs');
 vi.mock('node:fs/promises');

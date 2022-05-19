@@ -1,7 +1,7 @@
 import fromIter from 'callbag-from-iter';
 import { consumeSource } from '@clfhhc/callbag-toolkit';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { last } from '../../../lib/callbag/last';
+import { last } from '@/lib/callbag/last';
 
 describe('last', () => {
   const next = vi.fn<[number], void>();

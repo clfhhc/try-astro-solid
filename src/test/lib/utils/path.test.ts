@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { urlParse } from '../../../lib/utils/path';
+import { urlParse } from '@/lib/utils/path';
 
 describe('Path Util functions', () => {
   describe('urlParse', () => {

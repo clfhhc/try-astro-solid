@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   findFilesInDirIteratively,
   findFilesInDirIterativelyAsync,
-} from '../../../lib/utils/findFilesInDirIteratively';
+} from '@/lib/utils/findFilesInDirIteratively';
 
 vi.mock('node:fs');
 vi.mock('node:fs/promises');

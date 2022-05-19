@@ -1,4 +1,4 @@
-import { findFilesInDirIterativelyAsync } from '../utils/findFilesInDirIteratively';
+import { findFilesInDirIterativelyAsync } from '@/lib/utils/findFilesInDirIteratively';
 import { parse, relative, resolve } from 'node:path';
 
 export interface SlugIndexed<T> {

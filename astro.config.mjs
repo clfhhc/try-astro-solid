@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import solid from '@astrojs/solid-js';
+import { resolve } from 'node:path';
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,6 +11,11 @@ export default defineConfig({
   vite: {
     optimizeDeps: {
       exclude: ['fs', 'path', 'module', 'node:fs'],
+    },
+    resolve: {
+      alias: {
+        '@': resolve(process.cwd(), './src'),
+      },
     },
   },
 });

@@ -1,6 +1,6 @@
 import { fs, vol } from 'memfs';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { extractFileSection } from '../../../lib/utils/readFile';
+import { extractFileSection } from '@/lib/utils/readFile';
 
 vi.mock('node:fs');
 vi.mock('node:fs/promises');
