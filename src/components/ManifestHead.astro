@@ -1,0 +1,117 @@
+---
+import {join} from 'node:path';
+
+export interface Props {
+  title?: string | null;
+  description?: string | null;
+  charSet?: string | null;
+  linkPrefix?: string | null;
+  hrefCanonical?: string | null;
+  hrefManifest?: string | null;
+  themeColor?: string | null;
+  favIconPath?: string | null;
+  keywords?: string | (string | null)[] | null;
+  refresh?: number | null;
+  appleIconPath?: string | null;
+  appleIconSize?: string | null;
+  isAmp?: string | null;
+  noIndex?: boolean | null;
+  noFollow?: boolean | null;
+};
+const LINK_PREFIX = import.meta.env.BASE_URL || '';
+const THEME_COLOR = import.meta.env.PUBLIC_THEME_COLOR;
+const MANIEFST_PATH = import.meta.env.PUBLIC_MANIEFST_PATH;
+const ICON_192_PATH = import.meta.env.PUBLIC_ICON_192_PATH;
+const FAV_ICON_PATH = import.meta.env.PUBLIC_FAV_ICON_PATH;
+
+const title = (Astro.props as Props).title ?? '';
+const description = (Astro.props as Props).description ?? title;
+const charSet = (Astro.props as Props).charSet ?? 'utf-8';
+const themeColor = (Astro.props as Props).themeColor ?? THEME_COLOR;
+const keywords = Array.isArray((Astro.props as Props).keywords)
+  ? ((Astro.props as Props).keywords as string[]).filter((keyword) => !!keyword).join(', ')
+  : ((Astro.props as Props).keywords as string) ?? title;
+const linkPrefix = ((Astro.props as Props).linkPrefix ?? LINK_PREFIX) || '';
+const hrefManifest = (Astro.props as Props).hrefManifest ?? MANIEFST_PATH;
+const noIndex = !!(Astro.props as Props).noIndex;
+const noFollow = !!(Astro.props as Props).noFollow;
+const favIconPath = (Astro.props as Props).favIconPath ?? FAV_ICON_PATH;
+const appleIconPath = (Astro.props as Props).appleIconPath ?? ICON_192_PATH;
+const appleIconSize = (Astro.props as Props).appleIconSize ?? '192x192';
+const { isAmp, hrefCanonical, refresh } = (Astro.props as Props);
+---
+<>
+  <title >{title}</title>
+  <meta char-set={charSet}  />
+  <meta name="description"  content={description} />
+  {themeColor && (
+    <meta name="theme-color"  content={themeColor} />
+  )}
+  <meta name="keywords"  content={keywords} />
+  <meta http-equiv="X-UA-Compatible"  content="ie=edge" />
+  {!isAmp && hrefCanonical && (
+    <link rel="canonical" href={join(linkPrefix, hrefCanonical)} />
+  )}
+  {hrefManifest && (
+    <link rel="manifest" href={join(linkPrefix, hrefManifest)} />
+  )}
+  {refresh && (
+    <meta http-equiv="refresh"  content={`${refresh}`} />
+  )}
+  {favIconPath && (
+    <>
+    <link rel="icon" type="image/x-icon" href={join(linkPrefix, favIconPath)} />
+    <link rel="shortcut icon" href={join(linkPrefix, favIconPath)} />
+    </>
+  )}
+  {noIndex ||
+    (noFollow && (
+      <meta
+        name="robots"
+        content={[
+          noIndex ? 'noIndex' : undefined,
+          noFollow ? 'noFollow' : undefined,
+        ].join(',')}
+      />
+    ))}
+
+  {/* for safari */}
+  <meta
+    name="apple-mobile-web-app-capable"
+    
+    content="yes"
+  />
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    
+    content="blue"
+  />
+  <meta
+    name="apple-mobile-web-app-title"
+    
+    content="With Manifest"
+  />
+  {appleIconPath && appleIconSize && (
+    <link
+      rel="apple-touch-icon"
+      sizes={appleIconSize}
+      href={join(linkPrefix, appleIconPath)}
+    />
+  )}
+
+  {/* for IE */}
+  {appleIconPath && (
+    <meta
+      name="msapplication-TitleImage"
+      
+      content={join(linkPrefix, appleIconPath)}
+    />
+  )}
+  {themeColor && (
+    <meta
+      name="msapplication-TitleColor"
+      
+      content={themeColor}
+    />
+  )}
+</>
