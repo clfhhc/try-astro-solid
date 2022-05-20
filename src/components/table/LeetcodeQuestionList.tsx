@@ -18,7 +18,6 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
   });
 
   createEffect(() => {
-    console.log('effect');
     const columnHeadersShouldHide = ['Index', 'Slug', 'Category'];
     instance.getHeaderGroups().forEach((group) => {
       group.headers.forEach((header) => {
