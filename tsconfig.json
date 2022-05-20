@@ -12,6 +12,8 @@
     // Add type definitions for our Vite runtime.
     "types": ["vite/client", "node"],
     "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

@@ -3,10 +3,10 @@ import { QuestionListDocument } from '@/graphql/leetcode/questionList.query';
 import { getLocalLeetcodeSlugs } from '@/lib/leetcode/getLeetcodeFiles';
 import { getUrqlClientOptions } from '@/lib/urql/getUrqlClientOptions';
 import { makeLocalStorage } from '@/lib/urql/makeLocalStorage';
+import {LeetcodeQuestionList} from '@/components/table/LeetcodeQuestionList';
 import { createClient, ssrExchange } from '@urql/core';
-import { Debug } from 'astro/components'
+import Typewriter from '@/components/typewriter/Typewriter';
 import Layout from '../components/Layout.astro';
-import Card from '../components/Card.astro';
 
 const ssrCache = ssrExchange({isClient: false});
 const storage = makeLocalStorage();
@@ -31,24 +31,17 @@ const leetcodeQuestions = questionList.filter(
 ---
 <Layout title="Welcome to Astro.">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			Check out the <code>src/pages</code> directory to get started.<br/>
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
+		<h1>Welcome to <span class="text-gradient"><Typewriter words={["David's", 'Typescript', 'Leetcode']} client:load /></span></h1>
+		<LeetcodeQuestionList leetcodeQuestionList={leetcodeQuestions} client:load />
 		<ul role="list" class="link-card-grid">
-			<Card href="https://docs.astro.build/" title="Documentation" body="Learn how Astro works and explore the official API docs." /> 
-			<Card href="https://astro.build/integrations/" title="Integrations" body="Supercharge your project with new frameworks and libraries." /> 
-			<Card href="https://astro.build/themes/" title="Themes" body="Explore a galaxy of community-built starter themes." /> 
-			<Card href="https://astro.build/chat/" title="Chat" body="Come say hi to our amazing Discord community. ❤️" />
 		</ul>
 	</main>
-	<Debug {leetcodeQuestions} />
 </Layout>
 
 <style>
 	:root {
-		--astro-gradient: linear-gradient(0deg,#4F39FA, #DA62C4);
+		--astro-caret-color: #954EDF;
+		--astro-gradient: linear-gradient(0deg, #4F39FA, #DA62C4);
 	}
 
 	h1 {
@@ -57,8 +50,8 @@ const leetcodeQuestions = questionList.filter(
 
 	main {
 		margin: auto;
-    	padding: 1em;
-		max-width: 60ch;
+		padding: 1em;
+		max-width: 80ch;
 	}
 
 	.text-gradient {
@@ -68,8 +61,11 @@ const leetcodeQuestions = questionList.filter(
 		-webkit-text-fill-color: transparent;
 		background-size: 100% 200%;
 		background-position-y: 100%;
-		border-radius: 0.4rem;
-		animation: pulse 4s ease-in-out infinite;
+		content: "Leetcode";
+		border-right: .15em solid var(--astro-caret-color);
+		animation:
+			pulse 4s ease-in-out infinite,
+			blink-caret 1s step-end infinite;
 	}
 
 	@keyframes pulse {
@@ -77,21 +73,11 @@ const leetcodeQuestions = questionList.filter(
 		50% { background-position-y: 80%; }
 	}
 
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		background: #4F39FA;
-		padding: 1.0rem;
-		border-radius: 0.4rem;
-		color: var(--color-bg);
+	@keyframes blink-caret {
+		from, to { border-color: transparent; }
+		50% { border-color: var(--astro-caret-color); }
 	}
 
-	.instructions code {
-		font-size: 0.875em;
-		border: 0.1em solid var(--color-border);
-		border-radius: 4px;
-		padding: 0.15em 0.25em;
-	}
 	.link-card-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
