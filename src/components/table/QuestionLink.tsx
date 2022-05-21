@@ -6,6 +6,7 @@ export interface Props {
 }
 
 function QuestionLink({ text, href }: Props) {
+  console.log(text);
   return (
     <div class={styles['link-card']}>
       <a href={href}>
