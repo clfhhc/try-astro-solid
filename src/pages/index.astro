@@ -33,8 +33,6 @@ const leetcodeQuestions = questionList.filter(
 	<main>
 		<h1>Welcome to <span class="text-gradient"><Typewriter words={['Leetcode', 'Typescript', 'Solution']} client:load /></span></h1>
 		<LeetcodeQuestionList leetcodeQuestionList={leetcodeQuestions} client:load />
-		<ul role="list" class="link-card-grid">
-		</ul>
 	</main>
 </Layout>
 
@@ -46,6 +44,7 @@ const leetcodeQuestions = questionList.filter(
 
 	h1 {
 		margin: 2rem 0;
+		padding: 0 2rem;
 	}
 
 	main {
@@ -76,12 +75,5 @@ const leetcodeQuestions = questionList.filter(
 	@keyframes blink-caret {
 		from, to { border-color: transparent; }
 		50% { border-color: var(--astro-caret-color); }
-	}
-
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
 	}
 </style>

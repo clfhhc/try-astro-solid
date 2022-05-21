@@ -5,7 +5,7 @@ import {
   LeetcodeQuestion,
   leetcodeQuestionListTable,
 } from './questionListTable';
-
+import styles from './leetcodeQuestionList.module.css';
 export interface Props {
   leetcodeQuestionList: LeetcodeQuestion[];
 }
@@ -29,41 +29,37 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
   });
 
   return (
-    <table>
-      <thead>
-        <For each={instance.getHeaderGroups()}>
-          {(
-            headerGroup: ReturnType<typeof instance.getHeaderGroups>[number]
-          ) => {
-            if (headerGroup.id === '0') {
-              return null;
-            }
-            return (
-              <tr>
-                <For each={headerGroup.headers}>
-                  {(header) => (
-                    <th colSpan={header.colSpan}>
-                      {header.isPlaceholder ? null : header.renderHeader()}
-                    </th>
-                  )}
-                </For>
-              </tr>
-            );
-          }}
-        </For>
-      </thead>
-      <tbody>
-        <For each={instance.getRowModel().rows}>
-          {(row) => (
-            <tr>
-              <For each={row.getVisibleCells()}>
-                {(cell) => <td>{cell.renderCell()}</td>}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </table>
+    <div class={styles['question-list']}>
+      <For each={instance.getHeaderGroups()}>
+        {(headerGroup: ReturnType<typeof instance.getHeaderGroups>[number]) => {
+          if (headerGroup.id === '0') {
+            return null;
+          }
+          return (
+            <For each={headerGroup.headers}>
+              {(header) => (
+                <div class={styles['question-list-header']}>
+                  {header.isPlaceholder ? null : header.renderHeader()}
+                </div>
+              )}
+            </For>
+          );
+        }}
+      </For>
+      <For each={instance.getRowModel().rows}>
+        {(row) => (
+          <For each={row.getVisibleCells()}>
+            {(cell) => (
+              <div
+                classList={{ [styles['darker-row']]: cell.row.index % 2 === 1 }}
+              >
+                {cell.renderCell()}
+              </div>
+            )}
+          </For>
+        )}
+      </For>
+    </div>
   );
 }
 
