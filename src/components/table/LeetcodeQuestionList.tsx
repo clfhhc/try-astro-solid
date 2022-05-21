@@ -1,4 +1,4 @@
-import { For, createEffect } from 'solid-js';
+import { For } from 'solid-js';
 import { createTableInstance, getCoreRowModel } from '@tanstack/solid-table';
 import {
   columns,
@@ -17,7 +17,7 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  createEffect(() => {
+  queueMicrotask(() => {
     const columnHeadersShouldHide = ['Index', 'Slug', 'Category'];
     instance.getHeaderGroups().forEach((group) => {
       group.headers.forEach((header) => {
