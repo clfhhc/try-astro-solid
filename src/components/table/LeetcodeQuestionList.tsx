@@ -1,4 +1,4 @@
-import { For } from 'solid-js';
+import { createEffect, For } from 'solid-js';
 import { createTableInstance, getCoreRowModel } from '@tanstack/solid-table';
 import {
   columns,
@@ -17,15 +17,10 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  queueMicrotask(() => {
-    console.log('start hiding');
-    const columnHeadersShouldHide = ['Index', 'Slug', 'Category'];
-    instance.getHeaderGroups().forEach((group) => {
-      group.headers.forEach((header) => {
-        if (columnHeadersShouldHide.includes(header.renderHeader())) {
-          header.column.toggleVisibility(false);
-        }
-      });
+  createEffect(() => {
+    const columnIdsShouldHide = ['questionId', 'titleSlug', 'categoryTitle'];
+    columnIdsShouldHide.forEach((columnId) => {
+      instance.getColumn(columnId).toggleVisibility(false);
     });
   });
 
