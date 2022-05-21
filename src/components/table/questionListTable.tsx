@@ -36,7 +36,9 @@ export const columns = [
           cell: (Cell) => (
             <QuestionLink
               text={Cell.getValue()}
-              href={`/leetcode/${Cell.row.original.titleSlug}`}
+              href={`${import.meta.env.BASE_URL}${
+                import.meta.env.BASE_URL.endsWith('/') ? '' : '/'
+              }leetcode/${Cell.row.original.titleSlug}`}
             />
           ),
         }

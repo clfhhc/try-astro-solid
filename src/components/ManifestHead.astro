@@ -1,4 +1,5 @@
 ---
+import {join} from 'node:path';
 export interface Props {
   title?: string | null;
   description?: string | null;
@@ -40,12 +41,10 @@ const favIconPath = (Astro.props as Props).favIconPath ?? FAV_ICON_PATH;
 const appleIconPath = (Astro.props as Props).appleIconPath ?? ICON_192_PATH;
 const appleIconSize = (Astro.props as Props).appleIconSize ?? '192x192';
 const { isAmp, hrefCanonical, refresh } = (Astro.props as Props);
-
-const baseUrl = new URL(linkPrefix, site).href;
 ---
 <>
   <title >{title}</title>
-  <base href={baseUrl} />
+  <base href={site} />
   <meta name="viewport" content="width=device-width">
   <meta char-set={charSet}  />
   <meta name="description"  content={description} />
@@ -55,18 +54,18 @@ const baseUrl = new URL(linkPrefix, site).href;
   <meta name="keywords"  content={keywords} />
   <meta http-equiv="X-UA-Compatible"  content="ie=edge" />
   {!isAmp && hrefCanonical && (
-    <link rel="canonical" href={hrefCanonical} />
+    <link rel="canonical" href={join(linkPrefix, hrefCanonical)} />
   )}
   {hrefManifest && (
-    <link rel="manifest" href={hrefManifest} />
+    <link rel="manifest" href={join(linkPrefix, hrefManifest)} />
   )}
   {refresh && (
     <meta http-equiv="refresh"  content={`${refresh}`} />
   )}
   {favIconPath && (
     <>
-    <link rel="icon" type="image/x-icon" href={favIconPath} />
-    <link rel="shortcut icon" href={favIconPath} />
+    <link rel="icon" type="image/x-icon" href={join(linkPrefix, favIconPath)} />
+    <link rel="shortcut icon" href={join(linkPrefix, favIconPath)} />
     </>
   )}
   {noIndex ||
@@ -100,7 +99,7 @@ const baseUrl = new URL(linkPrefix, site).href;
     <link
       rel="apple-touch-icon"
       sizes={appleIconSize}
-      href={appleIconPath}
+      href={join(linkPrefix, appleIconPath)}
     />
   )}
 
