@@ -18,6 +18,7 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
   });
 
   queueMicrotask(() => {
+    console.log('start hiding');
     const columnHeadersShouldHide = ['Index', 'Slug', 'Category'];
     instance.getHeaderGroups().forEach((group) => {
       group.headers.forEach((header) => {
