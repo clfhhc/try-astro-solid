@@ -50,15 +50,18 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
                 .getVisibleCells()
                 .filter((cell) => cell.column.getIsVisible())}
             >
-              {(cell) => (
-                <div
-                  classList={{
-                    [styles['darker-row']]: cell.row.index % 2 === 1,
-                  }}
-                >
-                  {cell.renderCell()}
-                </div>
-              )}
+              {(cell) => {
+                console.log('column: ', cell.column);
+                return (
+                  <div
+                    classList={{
+                      [styles['darker-row']]: cell.row.index % 2 === 1,
+                    }}
+                  >
+                    {cell.renderCell()}
+                  </div>
+                );
+              }}
             </For>
           );
         }}
