@@ -32,7 +32,7 @@ const leetcodeQuestions = questionList.filter(
 <Layout title="Welcome to Astro.">
 	<main>
 		<h1>Welcome to <span class="text-gradient"><Typewriter words={['Leetcode', 'Typescript', 'Solution']} client:load /></span></h1>
-		<LeetcodeQuestionList leetcodeQuestionList={leetcodeQuestions} client:only />
+		<LeetcodeQuestionList leetcodeQuestionList={leetcodeQuestions} client:load />
 		<ul role="list" class="link-card-grid">
 		</ul>
 	</main>

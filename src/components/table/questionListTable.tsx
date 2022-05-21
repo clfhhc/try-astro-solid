@@ -1,6 +1,7 @@
 import { createTable, Overwrite, TableGenerics } from '@tanstack/solid-table';
 import { QuestionListQuery } from '@/graphql/leetcode/questionList.query';
 import QuestionLink from './QuestionLink';
+import 'node:url';
 
 export type LeetcodeQuestion =
   QuestionListQuery['questionList']['data'][number];
@@ -35,12 +36,7 @@ export const columns = [
           cell: (Cell) => (
             <QuestionLink
               text={Cell.getValue()}
-              href={
-                new URL(
-                  `/leetcode/${Cell.row.original.titleSlug}`,
-                  `${import.meta.env.SITE}${import.meta.env.BASE_URL}`
-                ).href
-              }
+              href={`/leetcode/${Cell.row.original.titleSlug}`}
             />
           ),
         }
