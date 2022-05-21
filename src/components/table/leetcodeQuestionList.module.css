@@ -1,6 +1,6 @@
 :root {
-  --color-border: #ccf971;
-  --color-darker-row: #f7f9fa;
+  --color-table-border: #ccf971;
+  --color-table-darker-row: #f7f9fa;
 }
 
 .question-list {
@@ -15,27 +15,27 @@
   text-align: center;
   font-size: var(--font-size-lg);
   font-weight: bold;
-  background-color: var(--color-border);
+  background-color: var(--color-table-border);
 }
 
 .question-list > *:nth-child(2n + 1) {
-  border-left: 2px solid var(--color-border);
+  border-left: 2px solid var(--color-table-border);
 }
 
 .question-list > *:nth-child(2n + 2) {
-  border-right: 2px solid var(--color-border);
+  border-right: 2px solid var(--color-table-border);
 }
 
 .question-list > *:nth-child(1),
 .question-list > *:nth-child(2) {
-  border-top: 2px solid var(--color-border);
+  border-top: 2px solid var(--color-table-border);
 }
 
 .question-list > *:nth-last-child(1),
 .question-list > *:nth-last-child(2) {
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 2px solid var(--color-table-border);
 }
 
 .darker-row {
-  background-color: var(--color-darker-row);
+  background-color: var(--color-table-darker-row);
 }
