@@ -48,10 +48,9 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
             <For
               each={row
                 .getVisibleCells()
-                .filter((cell) => cell.column.getIsVisible())}
+                .filter((cell) => cell.column.columnDef.defaultIsVisible)}
             >
               {(cell) => {
-                console.log('column: ', cell.column);
                 return (
                   <div
                     classList={{
