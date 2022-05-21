@@ -17,15 +17,11 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  const [rows, setRows] = createSignal(instance.getRowModel().rows);
-
   createEffect(() => {
     const columnIdsShouldHide = ['questionId', 'titleSlug', 'categoryTitle'];
     columnIdsShouldHide.forEach((columnId) => {
-      console.log(instance.getColumn(columnId).id);
       instance.getColumn(columnId).toggleVisibility(false);
     });
-    setRows(instance.getRowModel().rows);
   });
 
   return (
@@ -46,18 +42,26 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
           );
         }}
       </For>
-      <For each={rows()}>
-        {(row) => (
-          <For each={row.getVisibleCells()}>
-            {(cell) => (
-              <div
-                classList={{ [styles['darker-row']]: cell.row.index % 2 === 1 }}
-              >
-                {cell.renderCell()}
-              </div>
-            )}
-          </For>
-        )}
+      <For each={instance.getRowModel().rows}>
+        {(row) => {
+          return (
+            <For
+              each={row
+                .getVisibleCells()
+                .filter((cell) => cell.column.getIsVisible())}
+            >
+              {(cell) => (
+                <div
+                  classList={{
+                    [styles['darker-row']]: cell.row.index % 2 === 1,
+                  }}
+                >
+                  {cell.renderCell()}
+                </div>
+              )}
+            </For>
+          );
+        }}
       </For>
     </div>
   );
