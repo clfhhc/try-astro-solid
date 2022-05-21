@@ -20,6 +20,7 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
   createEffect(() => {
     const columnIdsShouldHide = ['questionId', 'titleSlug', 'categoryTitle'];
     columnIdsShouldHide.forEach((columnId) => {
+      console.log(instance.getColumn(columnId).id);
       instance.getColumn(columnId).toggleVisibility(false);
     });
   });
