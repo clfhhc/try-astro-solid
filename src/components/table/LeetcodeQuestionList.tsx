@@ -1,4 +1,4 @@
-import { createEffect, For } from 'solid-js';
+import { createEffect, createSignal, For } from 'solid-js';
 import { createTableInstance, getCoreRowModel } from '@tanstack/solid-table';
 import {
   columns,
@@ -17,12 +17,15 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const [rows, setRows] = createSignal(instance.getRowModel().rows);
+
   createEffect(() => {
     const columnIdsShouldHide = ['questionId', 'titleSlug', 'categoryTitle'];
     columnIdsShouldHide.forEach((columnId) => {
       console.log(instance.getColumn(columnId).id);
       instance.getColumn(columnId).toggleVisibility(false);
     });
+    setRows(instance.getRowModel().rows);
   });
 
   return (
@@ -43,7 +46,7 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
           );
         }}
       </For>
-      <For each={instance.getRowModel().rows}>
+      <For each={rows()}>
         {(row) => (
           <For each={row.getVisibleCells()}>
             {(cell) => (
