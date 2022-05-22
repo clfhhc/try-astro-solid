@@ -1,6 +1,5 @@
 import { createTable, Overwrite, TableGenerics } from '@tanstack/solid-table';
 import { QuestionListQuery } from '@/graphql/leetcode/questionList.query';
-import QuestionLink from './QuestionLink';
 import 'node:url';
 
 export type LeetcodeQuestion =

@@ -1,4 +1,4 @@
-import { createEffect, createSignal, For } from 'solid-js';
+import { createEffect, For } from 'solid-js';
 import { createTableInstance, getCoreRowModel } from '@tanstack/solid-table';
 import {
   columns,
@@ -6,7 +6,7 @@ import {
   leetcodeQuestionListTable,
 } from './questionListTable';
 import styles from './leetcodeQuestionList.module.css';
-import QuestionLink from './QuestionLink';
+import QuestionLink from '../question-link/QuestionLink';
 export interface Props {
   leetcodeQuestionList: LeetcodeQuestion[];
 }
