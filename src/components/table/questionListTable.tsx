@@ -33,14 +33,7 @@ export const columns = [
         {
           id: 'display',
           header: 'Question',
-          cell: (Cell) => (
-            <QuestionLink
-              text={Cell.getValue()}
-              href={`${import.meta.env.BASE_URL}${
-                import.meta.env.BASE_URL.endsWith('/') ? '' : '/'
-              }leetcode/${Cell.row.original.titleSlug}`}
-            />
-          ),
+          cell: (Cell) => Cell.getValue(),
         }
       ),
     ],
