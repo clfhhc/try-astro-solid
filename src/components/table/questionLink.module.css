@@ -23,13 +23,20 @@
   opacity: 0.8;
 }
 
+.link-card a div {
+  margin: 0;
+  transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: row;
+}
+
 .link-card p {
   margin: 0;
   transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
-.link-card p span {
+.link-card span {
   display: inline-block;
   margin-left: 0.3rem;
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -43,6 +50,7 @@
   color: #4F39FA;
 }
 
-.link-card:hover p span, .link-card:focus-within p span {
+.link-card:hover span, .link-card:focus-within p span {
+  color: #4F39FA;
   transform: translateX(2px);
 }

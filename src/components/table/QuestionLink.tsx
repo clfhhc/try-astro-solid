@@ -9,10 +9,10 @@ function QuestionLink({ text, href }: Props) {
   return (
     <div class={styles['link-card']}>
       <a href={href}>
-        <p>
+        <div>
           <p>{text}</p>
           <span>&rarr;</span>
-        </p>
+        </div>
       </a>
     </div>
   );

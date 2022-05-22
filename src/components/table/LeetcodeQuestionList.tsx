@@ -32,7 +32,11 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
             return null;
           }
           return (
-            <For each={headerGroup.headers}>
+            <For
+              each={headerGroup.headers.filter(
+                (header) => header.column.columnDef.defaultIsVisible
+              )}
+            >
               {(header) => (
                 <div class={styles['question-list-header']}>
                   {header.isPlaceholder ? null : header.renderHeader()}
