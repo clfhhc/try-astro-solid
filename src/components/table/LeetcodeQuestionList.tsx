@@ -6,6 +6,7 @@ import {
   leetcodeQuestionListTable,
 } from './questionListTable';
 import styles from './leetcodeQuestionList.module.css';
+import QuestionLink from './QuestionLink';
 export interface Props {
   leetcodeQuestionList: LeetcodeQuestion[];
 }
@@ -61,7 +62,16 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
                       [styles['darker-row']]: cell.row.index % 2 === 1,
                     }}
                   >
-                    {cell.renderCell()}
+                    {cell.column.id === 'display' ? (
+                      <QuestionLink
+                        text={cell.getValue() as string}
+                        href={`${import.meta.env.BASE_URL}${
+                          import.meta.env.BASE_URL.endsWith('/') ? '' : '/'
+                        }leetcode/${cell.row.original.titleSlug}`}
+                      />
+                    ) : (
+                      cell.renderCell()
+                    )}
                   </div>
                 );
               }}
