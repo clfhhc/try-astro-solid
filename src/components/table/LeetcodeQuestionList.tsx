@@ -7,6 +7,9 @@ import {
 } from './questionListTable';
 import styles from './leetcodeQuestionList.module.css';
 import QuestionLink from '../question-link/QuestionLink';
+import DifficultyLabel, {
+  Props as DifficultyLabelProps,
+} from '../difficulty-label/DifficultyLabel';
 export interface Props {
   leetcodeQuestionList: LeetcodeQuestion[];
 }
@@ -68,6 +71,12 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
                         href={`${import.meta.env.BASE_URL}${
                           import.meta.env.BASE_URL.endsWith('/') ? '' : '/'
                         }leetcode/${cell.row.original.titleSlug}`}
+                      />
+                    ) : cell.column.id === 'difficulty' ? (
+                      <DifficultyLabel
+                        difficulty={
+                          cell.getValue() as LeetcodeQuestion['difficulty']
+                        }
                       />
                     ) : (
                       cell.renderCell()

@@ -1,0 +1,27 @@
+.difficulty-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.difficulty-label > span {
+  display: block;
+  font-size: 0.8rem;
+  color: white;
+  border-radius: 0.65rem;
+  padding: 0.05rem 0.5rem 0.15rem;
+}
+
+.easy {
+  background-color: #5cb85c;
+}
+
+.medium {
+  background-color: #f0ad4e;
+}
+
+.hard {
+  background-color: #d9534f;
+}
