@@ -7,9 +7,8 @@ import {
 } from './questionListTable';
 import styles from './leetcodeQuestionList.module.css';
 import QuestionLink from '../question-link/QuestionLink';
-import DifficultyLabel, {
-  Props as DifficultyLabelProps,
-} from '../difficulty-label/DifficultyLabel';
+import DifficultyLabel from '../difficulty-label/DifficultyLabel';
+
 export interface Props {
   leetcodeQuestionList: LeetcodeQuestion[];
 }
@@ -30,26 +29,6 @@ export function LeetcodeQuestionList({ leetcodeQuestionList }: Props) {
 
   return (
     <div class={styles['question-list']}>
-      <For each={instance.getHeaderGroups()}>
-        {(headerGroup: ReturnType<typeof instance.getHeaderGroups>[number]) => {
-          if (headerGroup.id === '0') {
-            return null;
-          }
-          return (
-            <For
-              each={headerGroup.headers.filter(
-                (header) => header.column.columnDef.defaultIsVisible
-              )}
-            >
-              {(header) => (
-                <div class={styles['question-list-header']}>
-                  {header.isPlaceholder ? null : header.renderHeader()}
-                </div>
-              )}
-            </For>
-          );
-        }}
-      </For>
       <For each={instance.getRowModel().rows}>
         {(row) => {
           return (

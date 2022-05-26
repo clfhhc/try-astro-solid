@@ -5,7 +5,7 @@
 
 .question-list {
   display: grid;
-  grid: auto-flow / minmax(24ch, 48ch) 12ch;
+  grid: auto-flow / minmax(24ch, 44ch) 12ch;
   margin: 30px auto;
   justify-content: center;
 }
